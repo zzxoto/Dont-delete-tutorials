@@ -1,0 +1,15 @@
+var A = function(){
+	this.x = 0;
+}
+
+A.cc = function(){ this.x = 1 }; 
+
+var b = new A();
+console.log( b.x )//0 expected
+
+A.cc = A.cc.bind( b );//remember bind returns a function
+
+A.cc();
+
+console.log( b.x );//1 magic
+

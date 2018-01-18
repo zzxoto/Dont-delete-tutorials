@@ -1,0 +1,35 @@
+--Our Local Strategy is only invoked on the route which uses the passport.authenticate middleware.
+
+--passport.deserializeUser is invoked on every request by passport.session. It enables us to load additional user information on every request. 
+This user object is attached to the request as req.user making it accessible in our request handling.
+
+
+//serializng
+passport.serializeUser(function(user, done) {
+    done(null, user.callsign.toLowerCase());
+  });
+
+Serializing has its root in computer science as converting a data of non-primitive type into binary form so that process running on other machine would understand it.
+In similar fashion, passport converts the information about the user ( in this case user.callsign.toLowerCase() ) and stores it in the server session ready to be
+used in subsequent requests.
+
+
+//deserializing
+  passport.deserializeUser(function(callsign, done) {
+    callsign = callsign.toLowerCase();
+    User.findOne({
+      where: {
+        $and: [
+          Sequelize.where(Sequelize.fn('lower', Sequelize.col('callsign')), sequelize.fn('lower', callsign))
+        ]
+      }
+    }).success(function(user) {
+      done(null, user);
+    }).catch(function(err) {
+      done(new Error('User ' + callsign + ' does not exist'));
+    });
+  });
+};
+
+Deserializing means reverting the serialized process to obtain back the original object. In the case of passport js, that property callsign from the session is
+is extracted and is now available in the callback function. We attach additional user info and the object is available as req.user in our request handling

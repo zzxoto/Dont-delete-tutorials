@@ -1,0 +1,42 @@
+/////////////////////////////////////	PROMISE RESOLVES NULL/////////////////////////////////////
+
+function seed(){
+	return Promise.all([
+		Folder.create({
+			name: 'Parent'
+		})
+	]).then(( x )=>{
+		console.log( x );
+	})
+	
+}
+
+
+seed().then(x=>{
+	console.log( x ); //prints null
+})
+
+
+//////////////////////////////////////PROMISE RESOLVES VALUE /////////////////////////////////
+
+
+function seed(){
+	return Promise.all([
+		Folder.create({
+			name: 'Parent'
+		})
+	]).then(( x )=>{
+		return Promise (...);
+	})
+	
+}
+
+
+seed().then(x=>{
+	console.log( x ); prints x
+})
+
+
+
+//returning another promise from the callback function that resolved the earlier promise, works in weird way.
+

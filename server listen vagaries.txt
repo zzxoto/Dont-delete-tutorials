@@ -1,0 +1,5 @@
+var port = 4200
+
+I can use same server handle and listen 4200 multiple times and it would not crash
+But, creating a new handle by doing net.createServer and listening on 4200 would throw an error saying the "EADDRINUSE"
+

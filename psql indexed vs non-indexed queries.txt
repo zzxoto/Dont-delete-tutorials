@@ -1,0 +1,58 @@
+DBMS ---> Software that handles the database functions, does implicit optimization, etc
+
+---------WHN USING INDEXING -----------
+
+if you create a index ( say {field:['age']} ) then your query for { where: { age: 10} } will be optimised
+
+if only that particular attribute is queried, what was used to define the index, then the resulting query will be fastest(optimised)
+
+if we asked for other attributes, ( say: attributes: { 'age' , 'name' }, where: {age: 10} ) then the DBMS has to perform look up to find the 
+necessary associations, which may take little bit added time cost
+
+use indexing if table is large ( > 50000  ) and you constantly have to perform query on that
+
+
+-------------- WHEN NOT USING INDEXING -------
+
+The records ( rows ) are only sorted via default primary key ('id'). So when we query ( age > 10 ), dbms has to do linear look up on the table 
+and the time complexity bound is linear 
+
+However if the table size is small then the non-indexed query is faster than the query because of some over-head time taken for indexed query that
+is not able to cut the efficiency when the table size is small
+
+
+
+--------COMPOSITE FIELD INDEXING ----------
+
+Say, the index is defined as: (talking in the context of how it is defined in sequelize)
+
+indexes:[{
+	      fields: [ {attribute:'size' , order: 'ASC' }, {attribute: 'age', order:'DESC'}]
+	}]	
+
+What the following line tells DBMS is, first arrange by ""size in ascending order"", then if there are confilcts ( say two rows of same size ) then and only then
+arrenge the entry via age in descending order
+
+i.e   SIZE		AGE
+	10		15
+	12		23
+	12		10	<--- see how when there is conflict DBMS resolved by inserting entry based upon "smaller age priority"
+
+So, when entry is queried in terms of size ( say { where: { size: 10} } ) then, the database can still perform optimised search because essentially our Index is 
+prioritised according to size field
+
+But not to be confused that the age query is optimised because age follows no order; it's arrengement is totally dependent on the size attribute.
+Instead of typing what are optimised and what aren't I will just show them in table which is pretty intuitive:
+
+The following queries are optimised for the given index:
+
+		BY			YE OR NE 
+	SIZE ASC OR DESC 		  YES
+	AGE ASC OR DESC			  NO
+	
+	SIZE ASC, AGE DESC		  YES
+	AGE DESC, SIZE ASC		  YES!!
+	
+	SIZE ASC, AGE ASC		  NO!!		<--- Present me knows this is intuitive.. future me think for sec
+
+

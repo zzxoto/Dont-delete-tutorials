@@ -1,0 +1,33 @@
+Essentially prototype property means the property that is common to all of my child. normally a constructor. 
+	    __proto__ property is the property that all the children "share" with the parent. normally a constructor
+
+Emphasis on share because they are all "pointing" to the same property.
+So, a child can mutate a __proto__property and have its effect globally
+
+Example
+
+funciton A(){
+	this.x = 1;
+}
+A.prototype.p = 23;
+
+
+var a = new A();
+var b = new A();
+
+console.log(A.prototype);
+console.log(a.__proto__.p);    	//ALL RESULT IN 23
+console.log(b.__proto__.p);
+
+
+//here comes the mutation
+a.__proto__.p = 20;
+
+console.log(A.prototype);
+console.log(a.__proto__.p);    	//ALL RESULT IN 20
+console.log(b.__proto__.p);
+
+
+############################
+this concept is central yet so mystic in javascript.
+

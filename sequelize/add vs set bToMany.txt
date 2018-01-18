@@ -1,0 +1,9 @@
+Suppose, Folder.belongsToMany(Folder, {as: 'SubFolder' , through: 'FolderHeirarchy' } )
+
+Folder.setFolder( x ) ==> replaces existing folder with x
+Folder.addFolder( x ) ==> adds x to the existing child relationship
+
+same goes to 
+
+Folder.setFolder( [x , y, z]) 
+Folder.addFolder( [x , y, z] )

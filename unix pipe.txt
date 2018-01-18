@@ -1,0 +1,19 @@
+Pipe connects the standard input and standard output of two different processes making IPC possible
+
+When a process calls pipe() kernel allocates some shared memory. Kernel addresses these shared memory as any other file systems. So, as in any other file system,
+kernel provides file descriptors to the calling process. One file descriptors is the handle for the read operation to that shared memory, while other file descriptor
+is the handle for the write operation. When the process "forks" or "spawns" the child process, child process inherits the file descriptor and now one end i.e either 
+parent process or the child process could plug that file descriptor in the standard output position in the table indexed '1' to perform write operation and issue command
+while the other process could plug that file descriptor in the standard input position in the table indexed '0' to perform write operation. Thus one-way communication 
+is achieved between the child and the parent process
+
+
+-asynchronous nature of the listening and emmiting messages is achieved via scheduling and I/O interrupts as kernel treats the shared memory space as any  other file
+
+
+
+In Node.js
+one can set two way communication between the parent and the child process via asserting "pipe" as the first and second entries in the stdio list stdio: ['pipe' , 'pipe', '']
+
+parent listens via ( child.stdout.on('data' , ()=>{} ) ) 
+child listens via ( process.stdin.on('data' , ()=>{} ) )//this part may not be correct for future me ``

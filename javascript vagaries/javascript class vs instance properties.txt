@@ -1,0 +1,22 @@
+myClass = function(){
+	this.name = "Abhaya"
+}
+myClass.name = "Class";
+
+obj = new myClass();
+
+obj.name //Abhaya
+myClass.name //Class
+
+//this shows the difference between class level properties and instance properties
+//this API can be used to create multiple instance of the class and some how store some "collective information " in the class level
+//for example:
+	a = class.create()
+	b = class.create()
+	Class.totalInstances = 0
+	Class.totalInstances += 2
+
+	delete a;
+	Class.totalinstances -= 1;
+
+//grouping data structure

@@ -1,0 +1,18 @@
+function A(){
+	this.myName = 'a'
+	this.checkName = function(){
+  		console.log( this.myName )
+  	}
+}
+
+function B(){
+	this.func = function( callback ){
+  		callback();
+	}
+}
+
+a = new A()
+b = new B() 
+//b.func( a.checkName )//prints undefined 
+
+b.func( a.checkName.bind(a) )// prints 'a' //becaue of context

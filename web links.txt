@@ -1,0 +1,7 @@
+amqpTutorial (Rabbitmq) ---> http://www.squaremobius.net/amqp.node/
+
+guitar sheet music --->   https://www.8notes.com/scores/11782.asp
+
+node event loop test-->https://github.com/tj/node-blocked
+
+socket programming -->  http://homepage.smc.edu/morgan_david/cs70/sockets.htm    &   https://www.quora.com/What-is-the-difference-between-client-socket-and-server-socket-in-computer-networking

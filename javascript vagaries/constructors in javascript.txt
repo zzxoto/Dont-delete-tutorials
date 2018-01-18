@@ -1,0 +1,21 @@
+Whenever I did console.log( A.prototype ) then it always had that constructor property. I always wondered what that would be
+
+say....
+
+A = function(){
+	this.x = 1
+	this.getX(){
+		return this.x;
+	}
+}
+var b = new A() 
+
+Above statements initializes b with the property x and getX. Therefore the whole function is called constructor
+Therefore as A.prototype is the the property that all the child of A will have in common.
+In this case constructor;
+
+
+
+
+
+
