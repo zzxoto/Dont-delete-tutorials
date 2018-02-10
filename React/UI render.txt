@@ -1,0 +1,4 @@
+It is true that we have to create completely new object whenever there happens some change in the state. But the time cost of create a new Object is greatly lower than
+the time cost of refreshing the entire DOM tree.
+
+ 

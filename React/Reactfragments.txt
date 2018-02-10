@@ -1,0 +1,30 @@
+React fragments act like <ng-container></ng-container> tag in Angular 2. I.e. They are just a empty containers and they don't show up inside the DOM.
+Use:
+	<ul>
+	<React.fragment>
+		<li>1</li>
+		<li>2</li>
+	</React.fragment> 
+	</ul>
+
+React.fragment fades away when later in time of DOM update.
+
+ShortHand Syntax:
+	<ul>
+	<>
+		<li>1</li>
+		<li>2</li>
+	</> 
+	</ul>
+
+(Empty Braces)
+
+
+They can also have key assigned 
+
+xxx.map(x=> {
+	<React.fragment key={x.id}>
+          <dt>{x.term}</dt>
+          <dd>{x.description}</dd>
+	</React.fragment>
+})

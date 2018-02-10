@@ -1,0 +1,6 @@
+componentRef = {...}
+
+let x = React.cloneElement(componentRef, {abcd: 1, key: 123});
+
+Now x is a reference to a Reactelement with props {abcd: 1}. note key is a special type of props that is not available as a props so it gets seperately attached to the object
+

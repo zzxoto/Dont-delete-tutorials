@@ -1,0 +1,71 @@
+-------OnBoarding------
+
+Legend:
+	flOrUp -> Field Leader Or Up.
+	< ?? > -> Have implemented but Unsure if this is the desire behaviour. Need feedback.
+
+HighLights and Concerns:
+	I think I overdid with adding Histories. They are gonna pile up pretty heavily in these onboarding processes.
+	req.body.note is optional for other routes but are mandatory for /reject and /schedule route.
+	
+	Are the following routes adequate?
+	Is the /schedule/ route necessary.
+	All the serial databases changes are done in transaction so no worries.
+	I have tested all the routes.
+	
+	There seem to be problem in mailSystem and addPositionToUser
+	Based on next suggestions I will ammend changes and commit thereafter.
+	
+There are 6 endpoints starting with "/api/onboarding/...."
+All of the routes requires authentication
+
+
+i) /:divisionId/:battalionId?
+	
+	Sends lists of application pretaining to that particular battalioinId and divisionId
+	-requester is required to be flOrUp
+	< ?? > DI cannot see the Applications
+
+	
+ii) /approve/:applicantId
+	
+	Application is approved.
+	-OnboardingStep is created
+	-History is added to the Application
+	-Email is sent to user
+	< ?? > Battalion Officer or above can approve
+	
+	
+iii)  /reject/:applicantId
+
+	Application is rejected.
+	-Email is sent to user. The body of the message is passed in req.body.note
+	< ?? > Rejection message ( length > 10 ) is mandatory
+	< ?? > Battalion Officer or above can reject
+	< ?? > DI cannot reject ( If applicant did not attend bootcamp how would DI reject him)?
+	< ?? > Application and OnboardingStep are destroyed
+	< ?? > Application rejected Note is added to both application and oboardingstep Histories
+	
+	
+iv) /assign/:applicantId/:drill_instructor_id
+	
+	DI is assigned to Applicant
+	-Only CO or XO or SO or DI himself can assign DI
+	-DI has to belong to same battalion heirarchy
+	-Only applicant who are approved could be assigned
+	-Email is sent to DI
+	-History added to OnboardingStep
+	< ?? > Even TAW Commander cannot assign DI if he wanted.
+	
+v) /schedule/:applicantId
+	
+	-Email to applicant regarding bootcamp scheduled
+	-Schedule details are to be included in req.body.note and Mandatory
+	< ?? > DI who is incharge of the bootcamp may only do the scheduling
+	
+vi) /complete/:applicantId
+	
+	BootCamp and application complete. Applicant is now a recruit in the applied battalion.
+	-History is added to application, onboarding and applicant 
+	-Congratulation Email is sent to user 
+	< ?? > Only DIs have a say on application being completed. NOT ANYONE ELSE.

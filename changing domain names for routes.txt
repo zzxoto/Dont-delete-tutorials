@@ -1,0 +1,6 @@
+go to C:\Windows\System32\drivers\etc\hosts
+
+then map the ipaddress to your desired domain name
+
+
+

@@ -1,0 +1,36 @@
+//email transfer using command prompt
+
+//open command prompt
+// openssl s_client -starttls smtp  -connect smtp.gmail.com:587 -crlf
+/**
+	-starttls smtp -> for secure tls/ssl communication channel over smtp protocol
+	
+	-connect smtp.gmail.com:587 -> connect to gmail server at standard secure smtp port 587
+	
+	-crlf	-> recognize linebreak as <CRLF>(windows apparently doesn't consider line break as CRLF)
+	
+	//OPTIONAL
+	-sess_out abc.pem -> store the session ID of the connection to file named abc.pem
+	-sess_in	abc.pem -> load the session ID from the file abc.pem. Makes communication faster
+**/
+
+//ehlo smtp.gmail.com:587	//turns out after we have moved to secure channel we again have to send EHLO command 
+//AUTH LOGIN
+//username //HEX FORM
+//password //HEX FORM
+
+//MAIL FROM: <username@gmail.com>
+//rcpt to: <abc@gmail.com>//lowercase is necessary otherwise causes bugs
+
+//DATA //body of our email
+//<CRLF>.<CRLF>
+
+
+
+
+
+
+
+
+	
+	

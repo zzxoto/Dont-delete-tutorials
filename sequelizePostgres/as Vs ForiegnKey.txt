@@ -1,0 +1,13 @@
+var Position = sequelize.define( 'Position',{
+	name: Sequelize.STRING
+})
+
+var User = sequelize.define( 'User',{
+	name: Sequelize.STRING,
+})
+Position.belongsTo( User, { as: 'soldier', foreignKey: 'usId'} )
+
+
+// this gives getSoldier and setSoldier METHODS in Position Objects.
+// this gives position.usID property in Position Objects at the same time.
+

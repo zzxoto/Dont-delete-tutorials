@@ -1,0 +1,36 @@
+def gen
+  
+  puts "gen once"
+  
+  yield()
+  
+  puts "gen second"
+  
+  yield()
+  
+  puts "gen complete"
+
+end
+
+def abc 
+  gen() do
+   13
+  end 
+end
+
+
+def def
+ gen() do
+  return 13
+ end
+end 
+
+
+abc()
+#In this case do block runs twice and all the prints inside gen method succesfully prints
+#methods returns nil
+
+def() #in this case do block runs once and exits immediately cause of return statement
+#method returns 13
+
+

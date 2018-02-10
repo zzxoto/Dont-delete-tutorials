@@ -1,0 +1,12 @@
+Position.belongsToMany(User, { through: 'UserPositions' });
+//this provides setUsers, getUsers to position objects.
+//pluralizing in this case is Mandatory
+
+
+Position.belongsToMany(User, {as:'User', through: 'UserPositions' });
+//In this case however one should not pluralize. i.e. setUser, getUser, addUser
+
+Position.belongsToMany(User, {as: 'Posi', through: 'UserPositions' });
+Position.belongsToMany(User, {as: 'posi', through: 'UserPositions' });
+//In both above cases, we get setPosi and getPosi despite of capitalization in { as:'xxx' ...}
+

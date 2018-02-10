@@ -1,0 +1,18 @@
+<Input ref={()=> {}} /> ---case 1
+
+VS
+
+<Input ref={this.someMethod} /> --case 2
+
+In case 1:
+	Whenever the render method is invoked the method inside the ref is re-created. So, react calls the method immediately everytime we want to render
+In case 2:
+	since the callback defined in ref is bound to our object, that means javascript doesn;t have to create the function. Thus, it doesn't get called unnecessarily
+
+
+say u want to store the refs in an array,
+In case 1:
+	Every time render method is called all the duplicate refs are repushed into the array
+In case 2:
+	Everytime render method is called only the newly instantiated ref is pushed to the array
+

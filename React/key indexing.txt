@@ -1,0 +1,19 @@
+Consider react li tags with "Dumb" indexing i.e. map((x , index)=><li key={index}></index>));
+
+1 Flower
+2 Bat
+3 Ball
+4 Vase
+5 Paper
+
+
+Say I delete item at index 2 and trigger react DOM update
+Now the list becomes
+
+1 Flower
+2 Ball
+3 Vase
+4 Paper
+
+Because of our "dumb" indexing react had to delete the position 5 and update 2,3,4 positions as well. *Note React deletes item at position 5 NOT position 2
+If instead had we provided unique indices to begin with, only change in DOM that would have been necessary would be deleting item "Bat" and no other would be necessary

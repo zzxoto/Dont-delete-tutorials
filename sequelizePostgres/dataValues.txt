@@ -1,0 +1,7 @@
+a.dataValues.b = 1;
+a.save();
+//The change wont persist.Instead refer to varaibles directly
+
+a.b = 1;
+a.save();
+//The change PERSISTS!!

@@ -1,0 +1,50 @@
+
+surface = pygame.Surface( [50 , 50] )
+
+exact_rect = surface.get_rect()
+small_rect
+large_rect
+
+
+surface.fill( red )//fills the entire 50 X 50 surface with red color
+surface.fill( red, small_rect)//fills the portion equivalent to small_rect
+surface.fill( red, large_rect)//however large the rect may be maximum area filled is that of the area of surface itself
+
+There is a catch though. All the surfaces have innate rects that start at (0 , 0) and cover the area given by their width and height.
+So, if the rect parameter passed in the surface doesnt intersect the innate rect, then no surface would be filled at all.
+
+
+In blitting however, the dimension of the rect supplied as parameter doesn't matter only the x , y coordinates matters
+
+screen.blit( surface , Rect<100 , 100 , 200 , 200> )
+screen.blit( surface , Rect<100 , 100 , 5 , 5> )
+screen.blit( surface , Rect<100 , 100 , 0 , 0> )
+
+All three would produce same result
+
+
+In order to display the changes one has to call pygame.display.update() and also have the surface blitted in the screen some way or other
+
+
+
+PYGAME TEXTS
+
+-initialize fonts with pygame.font.init()
+pygame.font.SysFont( 'Arial', 20) returns a Font object that we can use later to initialize make our text blocks
+
+
+
+To make text:
+	Font = pygame.font.SysFont( 'Arial', 20)
+	surface = Font.render('Hello' , False, black)
+
+render method returns a surface with the text hello in it
+The height of textBlock depends on the Font style (here 'Arial') and Font size( here 20).
+i.e same textBlock of same font size except for different font style can have different surface heights
+
+Then,
+	screen.blit( surface, surface.get_rect() )
+	display_update()
+
+
+
